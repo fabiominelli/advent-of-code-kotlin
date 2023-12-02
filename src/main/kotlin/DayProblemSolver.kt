@@ -11,8 +11,10 @@ abstract class DayProblemSolver(val dayNumber:Int, val year:Int) {
         solveForExample(2)
     }
 
+    private fun getFileName(year:Int, dayNumber:Int, set:String) = "$year/day$dayNumber-$set.txt"
+
     private fun solveForExample(star:Int) {
-        val result = solveForInput("day$dayNumber-$year-sample.txt", star)
+        val result = solveForInput(getFileName(year, dayNumber, "sample"), star)
         println("==============================================================================")
         println("AoC $year - Day $dayNumber - Star $star - Solution for sample is: $result")
         println("==============================================================================")
@@ -27,7 +29,7 @@ abstract class DayProblemSolver(val dayNumber:Int, val year:Int) {
     }
 
     private fun solveForMyInput(star:Int) {
-        val result = solveForInput("day$dayNumber-$year-myInput.txt", star)
+        val result = solveForInput(getFileName(year, dayNumber, "myInput"), star)
         println("==============================================================================")
         println("AoC $year - Day $dayNumber - Star $star - Solution for my input is: $result")
         println("==============================================================================")
