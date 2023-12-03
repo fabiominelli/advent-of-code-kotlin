@@ -1,6 +1,6 @@
 fun main() {
 
-    val problem:DayProblemSolver = AoC23Day02()
+    val problem:DayProblemSolver = AoC23Day03()
 
     problem.solveFirstStarForExample()
     problem.solveFirstStarForMyInput()

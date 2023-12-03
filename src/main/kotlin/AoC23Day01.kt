@@ -7,12 +7,14 @@ class AoC23Day01: DayProblemSolver(1, 2023) {
         "9" to 9, "nine" to 9
     )
 
-    override fun getFirstStarLineOutcome(line:String): Int {
+    override fun isProblemSolutionBySumOfLines() = true
+
+    override fun getFirstStarLineOutcome(line: String, row: Int): Int {
         // Implementation lost
         return 0
     }
 
-    override fun getSecondStarLineOutcome(line: String): Int {
+    override fun getSecondStarLineOutcome(line: String, row: Int): Int {
         val regEx = m.keys.joinToString("|", "(", ")" ).toRegex()
         val firstDigit = m[regEx.find(line)?.value?:'0']?:0
         val regExInverted = m.keys.map{ it.reversed()}.joinToString("|", "(", ")" ).toRegex()

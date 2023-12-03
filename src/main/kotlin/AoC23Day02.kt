@@ -4,13 +4,13 @@ import kotlin.math.max
 
 class AoC23Day02: DayProblemSolver(2, 2023) {
 
+    override fun isProblemSolutionBySumOfLines() = true
+
     enum class CubeColor {BLUE, RED, GREEN}
-
-
 
     private val limit = mapOf(RED to 12, GREEN to 13, BLUE to 14)
 
-    override fun getFirstStarLineOutcome(line: String): Int {
+    override fun getFirstStarLineOutcome(line: String, row: Int): Int {
 
         fun isCubeDrawPossible(cube: String):Boolean {
             val countColor = cube.trim().split(" ")
@@ -36,7 +36,7 @@ class AoC23Day02: DayProblemSolver(2, 2023) {
         }
     }
 
-    override fun getSecondStarLineOutcome(line: String): Int {
+    override fun getSecondStarLineOutcome(line: String, row: Int): Int {
 
         val limit:MutableMap<CubeColor, Int> = mutableMapOf()
 
