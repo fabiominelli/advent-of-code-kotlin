@@ -8,6 +8,10 @@ class AoC23Day02: DayProblemSolver(2, 2023) {
 
     enum class CubeColor {BLUE, RED, GREEN}
 
+    //=======================
+    //     FIRST STAR
+    //=======================
+
     private val limit = mapOf(RED to 12, GREEN to 13, BLUE to 14)
 
     override fun getFirstStarLineOutcome(line: String, row: Int): Int {
@@ -28,37 +32,37 @@ class AoC23Day02: DayProblemSolver(2, 2023) {
         val sets = split1[1].trim().split(";")
 
         return if (sets.all { set -> isSetDrawPossible(set) }) {
-            println("$line is possible!")
             game
         } else {
-            println("$line is NOT possible!")
             0
         }
     }
 
+    //=======================
+    //     SECOND STAR
+    //=======================
+
     override fun getSecondStarLineOutcome(line: String, row: Int): Int {
 
-        val limit:MutableMap<CubeColor, Int> = mutableMapOf()
+        val lineLimit: MutableMap<CubeColor, Int> = mutableMapOf()
 
-        fun updateMaxWithCube(cube: String) {
+        fun updateLimitWithCube(cube: String) {
             val countColor = cube.trim().split(" ")
             val count = countColor[0].toInt()
             val color = CubeColor.valueOf(countColor[1].uppercase(Locale.getDefault()))
-            limit[color] = max(limit[color]?:0, count)
+            lineLimit[color] = max(lineLimit[color] ?: 0, count)
         }
 
-        fun updateMaxWithSet(set: String) {
-            set.split(",").forEach { cube -> updateMaxWithCube(cube) }
+        fun updateLimitsWithSet(set: String) {
+            set.split(",").forEach { cube -> updateLimitWithCube(cube) }
         }
 
         val split1 = line.split(":")
         val sets = split1[1].trim().split(";")
 
-        sets.forEach { set -> updateMaxWithSet(set) }
-        val power = (limit[RED]?:0)*(limit[GREEN]?:0)*(limit[BLUE]?:0)
-        println("$line - power is $power")
+        sets.forEach { set -> updateLimitsWithSet(set) }
 
-        return power
+        return (lineLimit[RED] ?: 0) * (lineLimit[GREEN] ?: 0) * (lineLimit[BLUE] ?: 0)
     }
 
 

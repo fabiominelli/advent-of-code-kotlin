@@ -1,11 +1,30 @@
 fun main() {
 
-    val problem:DayProblemSolver = AoC23Day03()
+    val problems = mapOf(
+        1 to AoC23Day01(),
+        2 to AoC23Day02(),
+        3 to AoC23Day03(),
+    )
 
-    problem.solveFirstStarForExample()
-    problem.solveFirstStarForMyInput()
+    println()
+    println ("|=====||===========|===========||===========|===========|")
+    println ("|     ||       Part 1          ||       Part 2          |")
+    println ("|     ||-----------------------||-----------------------|")
+    println ("| Day ||  Sample   | My Input  ||  Sample   | My Input  |")
+    println ("|=====||===========|===========||===========|===========|")
 
-    problem.solveSecondStarForExample()
-    problem.solveSecondStarForMyInput()
+    problems.forEach { (day, problem) ->
+
+        println ("| %3d || %9d | %9d || %9d | %9d |".format(
+            day,
+            problem.solveForExample(star = 1),
+            problem.solveForMyInput(star = 1),
+            problem.solveForExample(star = 2),
+            problem.solveForMyInput(star = 2)
+        ))
+    }
+
+    println ("|=====||===========|===========||===========|===========|")
+    println()
 
 }

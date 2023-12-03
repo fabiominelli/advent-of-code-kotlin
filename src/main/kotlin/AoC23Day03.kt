@@ -55,6 +55,8 @@ class AoC23Day03: DayProblemSolver(3, 2023) {
         }
     }
 
+
+
     //=======================
     //     SECOND STAR
     //=======================
@@ -101,6 +103,5 @@ class AoC23Day03: DayProblemSolver(3, 2023) {
             } else 0
         }.sum()
     }
-
 
 }
