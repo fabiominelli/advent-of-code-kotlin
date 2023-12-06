@@ -30,7 +30,7 @@ class AoC23Day04: DayProblemSolver(4, 2023) {
     //     SECOND STAR
     //=======================
 
-    var cardCount: Array<Int> = arrayOf()
+    private var cardCount: Array<Int> = arrayOf()
 
     override fun secondStarPreprocessInput(lines:List<String>) {
         cardCount = Array(lines.size) {1}
