@@ -12,23 +12,18 @@ class AoC23Day05: DayProblemSolver(5, 2023) {
     //=======================
 
     override fun getFirstStarOutcome(lines: List<String>): Int {
-        val seeds = lines[0].split(":")[1].trim().split(" ").map { it.trim().toBigInteger() }
 
-        // Parsing input
+        val seeds = lines[0].split(":")[1].trim().split(" ").map { it.trim().toBigInteger() }
         val maps = parseAllCategoryMaps(lines)
 
-        // Compute
         fun findLocation(seed:BigInteger):BigInteger {
-            var value = seed
-            categories.forEach { cat ->
+            return categories.fold(seed) { acc, cat ->
                 val rangesForCategory = maps[cat]!!
-                value = rangesForCategory.firstNotNullOfOrNull { r -> r.mapValue(value) } ?: value
+                rangesForCategory.firstNotNullOfOrNull { r -> r.mapValue(acc) } ?: acc
             }
-            // last value is location
-            return value
         }
 
-        return seeds.minOfOrNull { findLocation(it) }!!.toInt()
+        return seeds.minOf{ findLocation(it) }.toInt()
     }
 
 
@@ -46,13 +41,10 @@ class AoC23Day05: DayProblemSolver(5, 2023) {
         val maps = parseAllCategoryMaps(lines)
 
         fun findLocationAndDelta(seedRange:Pair<BigInteger,BigInteger>):Pair<BigInteger,BigInteger> {
-            var value = seedRange
-            categories.forEach { cat ->
+            return categories.fold(seedRange) { acc, cat ->
                 val rangesForCategory = maps[cat]!!
-                value = rangesForCategory.firstNotNullOfOrNull { r -> r.mapValueWithDelta(value) } ?: value
+                rangesForCategory.firstNotNullOfOrNull { r -> r.mapValueWithDelta(acc) } ?: acc
             }
-            // last value is location
-            return value
         }
 
         var minimumLocation = BigInteger.ZERO
