@@ -5,18 +5,16 @@ class AoC23Day06: DayProblemSolver(6, 2023) {
 
     override fun isProblemSolutionBySumOfLines() = false
 
-
-    //=======================
-    //     FIRST STAR
-    //=======================
-
-    class Race(val time:Long, val record:Long) {
+    class Race(private val time:Long, private val record:Long) {
         fun winningWaysCount(): Int {
             val root = (time - sqrt((time * time - 4 * record).toDouble())) / 2
             return (time + 1 - (floor(root).toInt() + 1) * 2).toInt()
         }
     }
 
+    //=======================
+    //     FIRST STAR
+    //=======================
 
     override fun getFirstStarOutcome(lines: List<String>): Int {
 
