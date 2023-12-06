@@ -10,7 +10,13 @@ class AoC23Day06: DayProblemSolver(6, 2023) {
     //     FIRST STAR
     //=======================
 
-    class Race(val time:Long, val record:Long)
+    class Race(val time:Long, val record:Long) {
+        fun winningWaysCount(): Int {
+            val root = (time - sqrt((time * time - 4 * record).toDouble())) / 2
+            return (time + 1 - (floor(root).toInt() + 1) * 2).toInt()
+        }
+    }
+
 
     override fun getFirstStarOutcome(lines: List<String>): Int {
 
@@ -18,7 +24,7 @@ class AoC23Day06: DayProblemSolver(6, 2023) {
         val recordList = lines[1].split(':')[1].trim().split(" +".toRegex()).map { it.toLong() }
         val races = timeList.zip(recordList) { t, r -> Race(t,r) }
 
-        return races.map { winningWaysCount(it) }.foldRight(1) { ways, acc -> ways*acc}
+        return races.map { it.winningWaysCount() }.foldRight(1) { ways, acc -> ways*acc}
 
     }
 
@@ -30,17 +36,7 @@ class AoC23Day06: DayProblemSolver(6, 2023) {
     override fun getSecondStarOutcome(lines: List<String>): Int {
         val time = lines[0].split(':')[1].trim().split(" +".toRegex()).joinToString("").toLong()
         val record = lines[1].split(':')[1].trim().split(" +".toRegex()).joinToString("").toLong()
-        return winningWaysCount(Race(time, record))
-    }
-
-
-    //=======================
-    //     SHARED
-    //=======================
-
-    private fun winningWaysCount(race:Race):Int {
-        val root = (race.time - sqrt((race.time*race.time-4*race.record).toDouble()))/2
-        return (race.time + 1 - (floor(root).toInt()+1)*2).toInt()
+        return Race(time, record).winningWaysCount()
     }
 
 }
