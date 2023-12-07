@@ -7,6 +7,7 @@ fun main() {
         4 to AoC23Day04(),
         5 to AoC23Day05(),
         6 to AoC23Day06(),
+        7 to AoC23Day07(),
     )
 
     println()
