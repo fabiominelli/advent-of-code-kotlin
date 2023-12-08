@@ -1,3 +1,7 @@
+package aoc23
+
+import DayProblemSolver
+
 class AoC23Day07: DayProblemSolver(7, 2023) {
 
     override fun isProblemSolutionBySumOfLines() = false
@@ -52,7 +56,7 @@ class AoC23Day07: DayProblemSolver(7, 2023) {
             // e.g. "5", "311", "221"  (sum of digits in signature is always 5)
             label.groupBy { it }.map { it.value.size }.sortedDescending().joinToString("") { it.toString() }
 
-        private val category:Category = Category.forSignature(getSignature())
+        private val category: Category = Category.forSignature(getSignature())
 
         override fun compareTo(other: Hand): Int {
             return (this.category.compareTo(other.category)).let { cmp ->
@@ -63,9 +67,9 @@ class AoC23Day07: DayProblemSolver(7, 2023) {
     }
 
 
-    override fun getFirstStarOutcome(lines: List<String>): Int {
+    override fun getFirstStarOutcome(lines: List<String>): String {
         val hands = lines.map { Hand(it) }.sorted()
-        return hands.foldIndexed(0) {index, acc, hand -> acc + (index+1)*hand.bid}
+        return hands.foldIndexed(0) {index, acc, hand -> acc + (index+1)*hand.bid}.toString()
     }
 
 
@@ -91,7 +95,7 @@ class AoC23Day07: DayProblemSolver(7, 2023) {
             }
         }
 
-        private val category:Category = Category.forSignature(getEffectiveSignature())
+        private val category: Category = Category.forSignature(getEffectiveSignature())
 
         override fun compareTo(other: HandWithJoker): Int {
             return (this.category.compareTo(other.category)).let { cmp ->
@@ -101,9 +105,9 @@ class AoC23Day07: DayProblemSolver(7, 2023) {
         }
     }
 
-    override fun getSecondStarOutcome(lines: List<String>): Int {
+    override fun getSecondStarOutcome(lines: List<String>): String {
         val hands = lines.map { HandWithJoker(it) }.sorted()
-        return hands.foldIndexed(0) {index, acc, hand -> acc + (index+1)*hand.bid}
+        return hands.foldIndexed(0) {index, acc, hand -> acc + (index+1)*hand.bid}.toString()
     }
 
 }

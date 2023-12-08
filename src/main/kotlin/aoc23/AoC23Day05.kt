@@ -1,4 +1,6 @@
-import java.math.BigInteger
+package aoc23
+
+import DayProblemSolver
 import kotlin.math.min
 
 class AoC23Day05: DayProblemSolver(5, 2023) {
@@ -12,7 +14,7 @@ class AoC23Day05: DayProblemSolver(5, 2023) {
     //     FIRST STAR
     //=======================
 
-    override fun getFirstStarOutcome(lines: List<String>): Int {
+    override fun getFirstStarOutcome(lines: List<String>): String {
 
         val seeds = lines[0].split(":")[1].trim().split(" ").map { it.trim().toLong() }
         val maps = parseAllCategoryMaps(lines)
@@ -24,7 +26,7 @@ class AoC23Day05: DayProblemSolver(5, 2023) {
             }
         }
 
-        return seeds.minOf{ findLocation(it) }.toInt()
+        return seeds.minOf{ findLocation(it) }.toString()
     }
 
 
@@ -32,7 +34,7 @@ class AoC23Day05: DayProblemSolver(5, 2023) {
     //     SECOND STAR
     //=======================
 
-    override fun getSecondStarOutcome(lines: List<String>): Int {
+    override fun getSecondStarOutcome(lines: List<String>): String {
 
         // Parsing input
         val sequence = lines[0].split(":")[1].trim().split(" ").map { it.trim().toLong() }
@@ -70,7 +72,7 @@ class AoC23Day05: DayProblemSolver(5, 2023) {
                 seed += locationAndDelta.second
             }
         }
-        return minimumLocation.toInt()
+        return minimumLocation.toString()
     }
 
 

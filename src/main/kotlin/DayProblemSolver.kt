@@ -9,7 +9,7 @@ abstract class DayProblemSolver(private val dayNumber:Int, private val year:Int)
 
     fun solveForMyInput(star:Int) = solveForInput(getFileName(year, dayNumber, "myInput"), star)
 
-    private fun solveForInput(fileName: String, star: Int):Int {
+    private fun solveForInput(fileName: String, star: Int): String {
         val resource = javaClass.classLoader?.getResource(fileName)
             ?: throw IllegalArgumentException("File not found: $fileName")
 
@@ -19,14 +19,14 @@ abstract class DayProblemSolver(private val dayNumber:Int, private val year:Int)
 
             firstStarPreprocessInput(lines)
             if (isProblemSolutionBySumOfLines())
-                lines.mapIndexed { row, line -> getFirstStarLineOutcome(line, row)}.sum()
+                lines.mapIndexed { row, line -> getFirstStarLineOutcome(line, row)}.sum().toString()
             else
                 getFirstStarOutcome(lines)
         } else {
 
             secondStarPreprocessInput(lines)
             if (isProblemSolutionBySumOfLines())
-                lines.mapIndexed { row, line -> getSecondStarLineOutcome(line, row)}.sum()
+                lines.mapIndexed { row, line -> getSecondStarLineOutcome(line, row)}.sum().toString()
             else
                 getSecondStarOutcome(lines)
         }
@@ -40,13 +40,13 @@ abstract class DayProblemSolver(private val dayNumber:Int, private val year:Int)
 
     open fun getFirstStarLineOutcome(line: String, row: Int):Int = throw Exception("Not implemented for the problem")
 
-    open fun getFirstStarOutcome(lines:List<String>):Int = throw Exception("Not implemented for the problem")
+    open fun getFirstStarOutcome(lines:List<String>): String = throw Exception("Not implemented for the problem")
 
 
     open fun secondStarPreprocessInput(lines:List<String>) {}
 
     open fun getSecondStarLineOutcome(line: String, row: Int):Int = throw Exception("Not implemented for the problem")
 
-    open fun getSecondStarOutcome(lines:List<String>):Int = throw Exception("Not implemented for the problem")
+    open fun getSecondStarOutcome(lines:List<String>): String = throw Exception("Not implemented for the problem")
 
 }

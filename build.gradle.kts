@@ -11,6 +11,7 @@ repositories {
 }
 
 dependencies {
+    testImplementation("org.junit.jupiter:junit-jupiter-params:5.7.0")
     testImplementation(kotlin("test"))
 }
 
@@ -19,9 +20,9 @@ tasks.test {
 }
 
 kotlin {
-    jvmToolchain(8)
+    jvmToolchain(11)
 }
 
 application {
-    mainClass.set("MainKt")
+    mainClass.set("Main2023Kt")
 }

@@ -1,4 +1,7 @@
-import AoC23Day02.CubeColor.*
+package aoc23
+
+import aoc23.AoC23Day02.CubeColor.*
+import DayProblemSolver
 import java.util.*
 import kotlin.math.max
 
