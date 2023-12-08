@@ -33,7 +33,7 @@ abstract class DayProblemSolver(private val dayNumber:Int, private val year:Int)
 
     }
 
-    abstract fun isProblemSolutionBySumOfLines():Boolean
+    open fun isProblemSolutionBySumOfLines():Boolean = false
 
 
     open fun firstStarPreprocessInput(lines:List<String>) {}
