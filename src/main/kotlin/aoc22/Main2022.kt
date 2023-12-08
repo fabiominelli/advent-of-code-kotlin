@@ -3,6 +3,7 @@ package aoc22
 fun main() {
 
     val problems = mapOf(
+        24 to AoC22Day24(),
         25 to AoC22Day25(),
     )
 
