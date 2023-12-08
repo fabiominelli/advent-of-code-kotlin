@@ -1,9 +1,9 @@
 package aoc23
 
-import DayProblemSolver
+import ProblemSolver
 
 
-class AoC23Day08: DayProblemSolver(8, 2023) {
+class AoC23Day08: ProblemSolver(8, 2023) {
 
     class Network(lines:List<String>) {
 

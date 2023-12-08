@@ -1,10 +1,10 @@
 package aoc23
 
-import DayProblemSolver
+import ProblemSolver
 import kotlin.math.floor
 import kotlin.math.sqrt
 
-class AoC23Day06: DayProblemSolver(6, 2023) {
+class AoC23Day06: ProblemSolver(6, 2023) {
 
     override fun isProblemSolutionBySumOfLines() = false
 

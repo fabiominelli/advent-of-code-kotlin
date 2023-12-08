@@ -1,8 +1,11 @@
 package aoc23
 
+import aoc22.AoC22Day24
+import aoc22.AoC22Day25
+
 fun main() {
 
-    val problems = mapOf(
+    ProblemSolver.solve(mapOf(
         1 to AoC23Day01(),
         2 to AoC23Day02(),
         3 to AoC23Day03(),
@@ -11,27 +14,6 @@ fun main() {
         6 to AoC23Day06(),
         7 to AoC23Day07(),
         8 to AoC23Day08(),
-    )
-
-    println()
-    println ("=========================================================================")
-    println ("|     ||          Part 1               ||          Part 2               |")
-    println ("|     ||-------------------------------||-------------------------------|")
-    println ("| Day ||  Sample   | My Input          ||  Sample   | My Input          |")
-    println ("|=====||===========|===================||===========|===================|")
-
-    problems.forEach { (day, problem) ->
-
-        println ("| %3s || %9s | %17s || %9s | %17s |".format(
-            day,
-            problem.solveForExample(star = 1),
-            problem.solveForMyInput(star = 1),
-            problem.solveForExample(star = 2),
-            problem.solveForMyInput(star = 2)
-        ))
-    }
-
-    println ("=========================================================================")
-    println()
+    ))
 
 }

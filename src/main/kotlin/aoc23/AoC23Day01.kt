@@ -1,8 +1,8 @@
 package aoc23
 
-import DayProblemSolver
+import ProblemSolver
 
-class AoC23Day01: DayProblemSolver(1, 2023) {
+class AoC23Day01: ProblemSolver(1, 2023) {
 
     override fun isProblemSolutionBySumOfLines() = true
 

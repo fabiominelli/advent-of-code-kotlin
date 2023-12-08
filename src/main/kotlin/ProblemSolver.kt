@@ -1,7 +1,29 @@
 import java.io.File
 
 
-abstract class DayProblemSolver(private val dayNumber:Int, private val year:Int) {
+abstract class ProblemSolver(private val dayNumber:Int, private val year:Int) {
+
+    companion object {
+        fun solve(problems:Map<Int,ProblemSolver>) {
+            println()
+            println ("===============================================================================")
+            println ("|     ||          Part 1                  ||          Part 2                  |")
+            println ("|     ||----------------------------------||----------------------------------|")
+            println ("| Day ||  Sample   | My Input             ||  Sample   | My Input             |")
+            println ("|=====||===========|======================||===========|======================|")
+
+            problems.forEach { (day, problem) ->
+                print ("| %3s ||".format(day))
+                print (" %9s |".format(problem.solveForExample(star = 1)))
+                print (" %20s ||".format(problem.solveForMyInput(star = 1)))
+                print (" %9s |".format(problem.solveForExample(star = 2)))
+                println (" %20s |".format(problem.solveForMyInput(star = 2)))
+            }
+
+            println ("===============================================================================")
+            println()
+        }
+    }
 
     private fun getFileName(year:Int, dayNumber:Int, set:String) = "$year/day$dayNumber-$set.txt"
 
