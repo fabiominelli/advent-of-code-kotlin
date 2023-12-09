@@ -1,8 +1,5 @@
 package aoc23
 
-import aoc22.AoC22Day24
-import aoc22.AoC22Day25
-
 fun main() {
 
     ProblemSolver.solve(mapOf(
@@ -14,6 +11,7 @@ fun main() {
         6 to AoC23Day06(),
         7 to AoC23Day07(),
         8 to AoC23Day08(),
+        9 to AoC23Day09(),
     ))
 
 }
