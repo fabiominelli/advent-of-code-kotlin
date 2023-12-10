@@ -36,12 +36,11 @@ class AoC23Day10: ProblemSolver(10, 2023) {
             }
         }
 
-        class Cell(val row:Int, val col:Int, val pipe:Pipe) {
+        data class Cell(val row:Int, val col:Int, val pipe:Pipe) {
             fun isStart() = pipe==START
             override fun toString(): String {
                 return "($row,$col) $pipe"
             }
-
         }
 
         val height = lines.size
