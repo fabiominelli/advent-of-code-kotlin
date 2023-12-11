@@ -1,10 +1,10 @@
 import java.io.File
 
 
-abstract class ProblemSolver(private val dayNumber:Int, private val year:Int) {
+abstract class Problem(private val dayNumber:Int, private val year:Int) {
 
     companion object {
-        fun solve(problems:Map<Int,ProblemSolver>) {
+        fun solve(problems:List<Problem>) {
             println()
             println ("===============================================================================")
             println ("|     ||          Part 1                  ||          Part 2                  |")
@@ -12,8 +12,8 @@ abstract class ProblemSolver(private val dayNumber:Int, private val year:Int) {
             println ("| Day ||  Sample   | My Input             ||  Sample   | My Input             |")
             println ("|=====||===========|======================||===========|======================|")
 
-            problems.forEach { (day, problem) ->
-                print ("| %3s ||".format(day))
+            problems.forEach { problem ->
+                print ("| %3s ||".format(problem.dayNumber))
                 print (" %9s |".format(problem.solveForExample(star = 1)))
                 print (" %20s ||".format(problem.solveForMyInput(star = 1)))
                 print (" %9s |".format(problem.solveForExample(star = 2)))

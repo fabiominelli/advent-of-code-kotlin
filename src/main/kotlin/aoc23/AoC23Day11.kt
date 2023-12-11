@@ -1,10 +1,10 @@
 package aoc23
 
-import ProblemSolver
+import Problem
 import java.util.*
 
 
-class AoC23Day11: ProblemSolver(11, 2023) {
+class AoC23Day11: Problem(11, 2023) {
 
     data class Galaxy(val row:Int, val col:Int) {
         override fun toString(): String {

@@ -1,10 +1,10 @@
 package aoc22
 
-import ProblemSolver
+import Problem
 import java.util.*
 import kotlin.Comparator
 
-class AoC22Day24: ProblemSolver(24, 2022) {
+class AoC22Day24: Problem(24, 2022) {
 
     class Maze(val lines: List<String>) {
         val width = lines[0].length - 2

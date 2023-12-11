@@ -1,11 +1,11 @@
 package aoc23
 
 import aoc23.AoC23Day02.CubeColor.*
-import ProblemSolver
+import Problem
 import java.util.*
 import kotlin.math.max
 
-class AoC23Day02: ProblemSolver(2, 2023) {
+class AoC23Day02: Problem(2, 2023) {
 
     override fun isProblemSolutionBySumOfLines() = true
 

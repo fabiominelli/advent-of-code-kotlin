@@ -1,12 +1,12 @@
 package aoc23
 
-import ProblemSolver
+import Problem
 import aoc23.AoC23Day10.InsideOrOutside.*
 import aoc23.AoC23Day10.Sketch.Direction.*
 import aoc23.AoC23Day10.Sketch.Pipe.*
 
 
-class AoC23Day10: ProblemSolver(10, 2023) {
+class AoC23Day10: Problem(10, 2023) {
 
     class Sketch(lines:List<String>) {
 

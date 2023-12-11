@@ -1,12 +1,12 @@
 package aoc22
 
-import ProblemSolver
+import Problem
 
 fun main() {
 
-    ProblemSolver.solve(mapOf(
-        24 to AoC22Day24(),
-        25 to AoC22Day25(),
+    Problem.solve(listOf(
+        AoC22Day24(),
+        AoC22Day25(),
     ))
 
 }

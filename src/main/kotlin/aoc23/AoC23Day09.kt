@@ -1,9 +1,9 @@
 package aoc23
 
-import ProblemSolver
+import Problem
 
 
-class AoC23Day09: ProblemSolver(9, 2023) {
+class AoC23Day09: Problem(9, 2023) {
 
     class History(val values:List<Int>) {
 
