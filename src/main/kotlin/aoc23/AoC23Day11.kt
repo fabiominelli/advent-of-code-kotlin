@@ -1,6 +1,7 @@
 package aoc23
 
 import ProblemSolver
+import java.util.*
 
 
 class AoC23Day11: ProblemSolver(11, 2023) {
@@ -11,15 +12,11 @@ class AoC23Day11: ProblemSolver(11, 2023) {
         }
     }
 
-    class Universe(val lines:List<String>, val expansion:Int) {
-        private val galaxies = expandedGalaxies()
-        private val expHeight = galaxies.maxOf { it.row } + 1
-        private val expWidth = galaxies.maxOf { it.col } + 1
+    class Universe(val lines:List<String>, private val expansion:Int) {
 
-        private val galaxiesPerRow = galaxies.groupingBy { it.row }.eachCount()
-        private val galaxiesPerColumn = galaxies.groupingBy { it.col }.eachCount()
+        private val galaxies:List<Galaxy>
 
-        private fun expandedGalaxies():List<Galaxy> {
+        init {
             val height = lines.size
             val width = lines.size
             val emptyRows:MutableList<Int> = mutableListOf()
@@ -35,42 +32,44 @@ class AoC23Day11: ProblemSolver(11, 2023) {
             val emptyColumnsBeforeCol:Array<Int> = Array(height) { 0 }
             emptyCols.forEach { ec -> (ec+1..<width).forEach { emptyColumnsBeforeCol[it]++ } }
 
-            return galaxiesBeforeExpansion.map {g ->
+            galaxies = galaxiesBeforeExpansion.map {g ->
                 Galaxy(g.row+emptyRowsBeforeRow[g.row]*expansion, g.col+emptyColumnsBeforeCol[g.col]*expansion)
             }
         }
 
-        fun sumOfDistances():Long = sumOfVerticalDistances() + sumOfHorizontalDistances()
+        private val galaxiesPerRow = galaxies.groupByTo(TreeMap()) { it.row }
+        private val galaxiesPerColumn = galaxies.groupByTo(TreeMap()) { it.col }
 
-        private fun sumOfVerticalDistances():Long {
-            var prevNumberOfGalaxiesBelow = galaxies.size
-            var prevSumOfVerticalDistancesBelow = 0.toLong()
-            val result = (0..<expHeight).sumOf {r ->
-                val numberOfGalaxiesBelow = prevNumberOfGalaxiesBelow - (galaxiesPerRow[r]?:0)
-                val sumOfVerticalDistancesBelow:Long = if (r==0) galaxies.sumOf { it.row.toLong() } else prevSumOfVerticalDistancesBelow - prevNumberOfGalaxiesBelow
-                (galaxiesPerRow[r]?:0)*sumOfVerticalDistancesBelow.also {
-                    if (it<0) {
-                        println(it)
-                    }
-                    prevNumberOfGalaxiesBelow = numberOfGalaxiesBelow
-                    prevSumOfVerticalDistancesBelow = sumOfVerticalDistancesBelow
-                }
+
+        fun sumOfDistances():Long = sumOfProjectedDistances(true) + sumOfProjectedDistances(false)
+
+        private fun sumOfProjectedDistances(vertical:Boolean):Long {
+            var prevLayer = -1
+            var prevNumberOfFollowingGalaxies = galaxies.size
+            var prevSumOfProjectedDistancesToFollowing = galaxies.sumOf { 1 + if (vertical) it.row.toLong() else it.col.toLong() }
+            var res = 0.toLong()
+            val galaxyGrouping = if (vertical) galaxiesPerRow else galaxiesPerColumn
+            // iterating over non-empty rows (or columns)
+            galaxyGrouping.forEach { layer, galaxyList ->
+                val galaxyInLayerCount = galaxyList.size
+                val numberOfFollowingGalaxies = prevNumberOfFollowingGalaxies - galaxyInLayerCount
+                // Calculating the sum of all vertical (or horizontal) distances between a galaxy on this row (or column) and
+                // all the galaxies below; the sum is obtained by taking the sum computed for previous non-empty row (or column)
+                // and subtracting the number of galaxies in this row and below, multiplied by the rows (or cols) difference
+                // This works because, for example, moving from row1 to row2, all galaxy below are closer by row2-row1
+                val sumOfProjctedDistancesToFollowing:Long = prevSumOfProjectedDistancesToFollowing - prevNumberOfFollowingGalaxies*(layer-prevLayer)
+                // The grand total is increased by the sum computed above, multiplied by the number of galaxies in the
+                // current row or column (because the sum above is the sum of distances from single galaxy in this layer
+                // to all the following)
+                res += galaxyInLayerCount*sumOfProjctedDistancesToFollowing
+
+                prevLayer = layer
+                prevNumberOfFollowingGalaxies = numberOfFollowingGalaxies
+                prevSumOfProjectedDistancesToFollowing = sumOfProjctedDistancesToFollowing
             }
-            return result
+            return res
         }
-        private fun sumOfHorizontalDistances():Long {
-            var prevNumberOfGalaxiesOnTheRight = galaxies.size
-            var prevSumOfHorizontalDistancesOnTheRight = 0.toLong()
-            val result = (0..<expWidth).sumOf {c ->
-                val numberOfGalaxiesOnTheRight = prevNumberOfGalaxiesOnTheRight - (galaxiesPerColumn[c]?:0)
-                val sumOfHorizontalDistancesOnTheRight:Long = if (c==0) galaxies.sumOf { it.col.toLong() } else prevSumOfHorizontalDistancesOnTheRight - prevNumberOfGalaxiesOnTheRight
-                (galaxiesPerColumn[c]?:0)*sumOfHorizontalDistancesOnTheRight.also {
-                    prevNumberOfGalaxiesOnTheRight = numberOfGalaxiesOnTheRight
-                    prevSumOfHorizontalDistancesOnTheRight = sumOfHorizontalDistancesOnTheRight
-                }
-            }
-            return result
-        }
+
 
     }
 
