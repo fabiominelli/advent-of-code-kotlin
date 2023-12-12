@@ -3,7 +3,7 @@ package aoc23
 import Problem
 
 
-class AoC23Day08: Problem(8, 2023) {
+class AoC23Day08: Problem(8, 2023, "Haunted Wasteland") {
 
     class Network(lines:List<String>) {
 

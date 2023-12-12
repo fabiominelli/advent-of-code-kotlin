@@ -5,7 +5,7 @@ import Problem
 import java.util.*
 import kotlin.math.max
 
-class AoC23Day02: Problem(2, 2023) {
+class AoC23Day02: Problem(2, 2023, "Cube Conundrum") {
 
     override fun isProblemSolutionBySumOfLines() = true
 

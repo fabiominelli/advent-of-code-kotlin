@@ -3,7 +3,7 @@ package aoc23
 import Problem
 
 
-class AoC23Day09: Problem(9, 2023) {
+class AoC23Day09: Problem(9, 2023, "Mirage Maintenance") {
 
     class History(val values:List<Int>) {
 

@@ -6,7 +6,7 @@ import aoc23.AoC23Day10.Sketch.Direction.*
 import aoc23.AoC23Day10.Sketch.Pipe.*
 
 
-class AoC23Day10: Problem(10, 2023) {
+class AoC23Day10: Problem(10, 2023, "Pipe Maze") {
 
     class Sketch(lines:List<String>) {
 

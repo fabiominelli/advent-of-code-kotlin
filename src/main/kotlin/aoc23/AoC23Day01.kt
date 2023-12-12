@@ -2,7 +2,7 @@ package aoc23
 
 import Problem
 
-class AoC23Day01: Problem(1, 2023) {
+class AoC23Day01: Problem(1, 2023, "Trebuchet?!") {
 
     override fun isProblemSolutionBySumOfLines() = true
 

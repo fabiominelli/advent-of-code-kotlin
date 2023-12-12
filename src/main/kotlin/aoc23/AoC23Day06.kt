@@ -4,7 +4,7 @@ import Problem
 import kotlin.math.floor
 import kotlin.math.sqrt
 
-class AoC23Day06: Problem(6, 2023) {
+class AoC23Day06: Problem(6, 2023, "Wait For It") {
 
     override fun isProblemSolutionBySumOfLines() = false
 

@@ -4,7 +4,7 @@ import Problem
 import java.util.*
 
 
-class AoC23Day11: Problem(11, 2023) {
+class AoC23Day11: Problem(11, 2023, "Cosmic Expansion") {
 
     data class Galaxy(val row:Int, val col:Int) {
         override fun toString(): String {

@@ -4,7 +4,7 @@ import Problem
 import java.util.*
 import kotlin.Comparator
 
-class AoC22Day24: Problem(24, 2022) {
+class AoC22Day24: Problem(24, 2022, "Blizzard Basin") {
 
     class Maze(val lines: List<String>) {
         val width = lines[0].length - 2
@@ -65,33 +65,35 @@ class AoC22Day24: Problem(24, 2022) {
         while (minimumTimeToEnd == null && openNodes.isNotEmpty()) {
             val node = openNodes.remove()
             val successors = when (node) {
+
                 is StartExplorationNode -> listOfNotNull(
                     StartExplorationNode(node.time + 1),
                     MazeExplorationNode(node.time + 1, 0, 0, maze),
                 )
 
                 is MazeExplorationNode -> listOfNotNull(
-                    if (node.row < 1) null else MazeExplorationNode(node.time + 1, node.row - 1, node.col, maze),
-                    if (node.row > maze.height - 2) null else MazeExplorationNode(
-                        node.time + 1,
-                        node.row + 1,
-                        node.col,
-                        maze
-                    ),
-                    if (node.col > maze.width - 2) null else MazeExplorationNode(
-                        node.time + 1,
-                        node.row,
-                        node.col + 1,
-                        maze
-                    ),
-                    if (node.col < 1) null else MazeExplorationNode(node.time + 1, node.row, node.col - 1, maze),
+                    // North
+                    if (node.row < 1) null else MazeExplorationNode(node.time + 1,
+                        node.row - 1, node.col, maze),
+                    // South
+                    if (node.row > maze.height - 2) null else MazeExplorationNode(node.time + 1,
+                        node.row + 1, node.col, maze),
+                    // East
+                    if (node.col > maze.width - 2) null else MazeExplorationNode(node.time + 1,
+                        node.row, node.col + 1, maze),
+                    // West
+                    if (node.col < 1) null else MazeExplorationNode(node.time + 1,
+                        node.row, node.col - 1, maze),
+                    // Wait in place
                     MazeExplorationNode(node.time + 1, node.row, node.col, maze),
+                    // Exit
                     if (node.row == maze.height - 1 && node.col == maze.width - 1) EndExplorationNode(node.time + 1).also {
                         minimumTimeToEnd = node.time + 1
                     } else null
                 )
 
                 is EndExplorationNode -> emptyList() // unreachable
+
             }.filter { successor -> // is successor already explored or in queue?
                 openNodes.none { it.samePlaceAndTime(successor) } && !closedNodes.contains(successor.spaceTimeNode())
             }.filter { successor -> // is spacetime node without Blizzards?

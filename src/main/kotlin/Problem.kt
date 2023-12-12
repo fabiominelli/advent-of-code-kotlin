@@ -1,26 +1,27 @@
 import java.io.File
 
 
-abstract class Problem(private val dayNumber:Int, private val year:Int) {
+abstract class Problem(private val dayNumber:Int, private val year:Int, private val title: String = "n/a") {
 
     companion object {
         fun solve(problems:List<Problem>) {
             println()
-            println ("===============================================================================")
-            println ("|     ||          Part 1                  ||          Part 2                  |")
-            println ("|     ||----------------------------------||----------------------------------|")
-            println ("| Day ||  Sample   | My Input             ||  Sample   | My Input             |")
-            println ("|=====||===========|======================||===========|======================|")
+            println ("==================================================================================================================")
+            println ("|     |                                  ||          Part 1                  ||          Part 2                  |")
+            println ("|     |                                  ||----------------------------------||----------------------------------|")
+            println ("| Day |              Title               ||  Sample   | My Input             ||  Sample   | My Input             |")
+            println ("|=====|==================================||===========|======================||===========|======================|")
 
-            problems.forEach { problem ->
-                print ("| %3s ||".format(problem.dayNumber))
-                print (" %9s |".format(problem.solveForExample(star = 1)))
-                print (" %20s ||".format(problem.solveForMyInput(star = 1)))
-                print (" %9s |".format(problem.solveForExample(star = 2)))
-                println (" %20s |".format(problem.solveForMyInput(star = 2)))
+            problems.forEach { p ->
+                print ("| %3s |".format(p.dayNumber))
+                print ("| %31s ||".format(p.title))
+                print (" %9s |".format(p.solveForExample(star = 1)))
+                print (" %20s ||".format(p.solveForMyInput(star = 1)))
+                print (" %9s |".format(p.solveForExample(star = 2)))
+                println (" %20s |".format(p.solveForMyInput(star = 2)))
             }
 
-            println ("===============================================================================")
+            println ("==================================================================================================================")
             println()
         }
     }

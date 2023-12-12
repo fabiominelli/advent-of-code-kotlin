@@ -2,7 +2,7 @@ package aoc22
 
 import Problem
 
-class AoC22Day25: Problem(25, 2022) {
+class AoC22Day25: Problem(25, 2022, "Full of Hot Air") {
 
     override fun isProblemSolutionBySumOfLines() = false
 

@@ -3,9 +3,7 @@ package aoc23
 import Problem
 import kotlin.math.min
 
-class AoC23Day05: Problem(5, 2023) {
-
-    override fun isProblemSolutionBySumOfLines() = false
+class AoC23Day05: Problem(5, 2023, "If You Give A Seed A Fertilizer") {
 
     private val categories = listOf("soil","fertilizer","water","light","temperature","humidity","location")
 
