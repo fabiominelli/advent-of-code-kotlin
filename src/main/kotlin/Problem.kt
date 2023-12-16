@@ -15,10 +15,10 @@ abstract class Problem(private val dayNumber:Int, private val year:Int, private 
             problems.forEach { p ->
                 print ("| %3s |".format(p.dayNumber))
                 print ("| %31s ||".format(p.title))
-                print (" %9s |".format(p.solveForExample(star = 1)))
-                print (" %20s ||".format(p.solveForMyInput(star = 1)))
-                print (" %9s |".format(p.solveForExample(star = 2)))
-                println (" %20s |".format(p.solveForMyInput(star = 2)))
+                print (" %9s |".format(p.solveForInput(true, star = 1)))
+                print (" %20s ||".format(p.solveForInput(false, star = 1)))
+                print (" %9s |".format(p.solveForInput(true, star = 2)))
+                println (" %20s |".format(p.solveForInput(false, star = 2)))
             }
 
             println ("==================================================================================================================")
@@ -26,34 +26,30 @@ abstract class Problem(private val dayNumber:Int, private val year:Int, private 
         }
     }
 
-    private fun getFileName(year:Int, dayNumber:Int, set:String) = "$year/day$dayNumber-$set.txt"
+    private fun readFile(fileName:String):List<String>? =
+        javaClass.classLoader?.getResource(fileName)?.let { File(it.toURI()).readLines() }
 
-    fun solveForExample(star:Int) = solveForInput(getFileName(year, dayNumber, "sample-$star"), star)
 
-    fun solveForMyInput(star:Int) = solveForInput(getFileName(year, dayNumber, "myInput"), star)
-
-    private fun solveForInput(fileName: String, star: Int): String {
-        val resource = javaClass.classLoader?.getResource(fileName)
-            ?: throw IllegalArgumentException("File not found: $fileName")
-
-        val lines:List<String> = File(resource.toURI()).readLines()
+    private fun solveForInput(isSample: Boolean, star: Int): String {
+        val lines = if (isSample) {
+                        readFile("$year/day$dayNumber-sample.txt") ?: readFile("$year/day$dayNumber-sample-${star}.txt")
+                    } else {
+                        readFile("$year/day$dayNumber-myInput.txt")
+                    } ?: throw Exception("Input not found")
 
         return if (star==1) {
-
             firstStarPreprocessInput(lines)
             if (isProblemSolutionBySumOfLines())
                 lines.mapIndexed { row, line -> getFirstStarLineOutcome(line, row)}.sum().toString()
             else
                 getFirstStarOutcome(lines)
         } else {
-
             secondStarPreprocessInput(lines)
             if (isProblemSolutionBySumOfLines())
                 lines.mapIndexed { row, line -> getSecondStarLineOutcome(line, row)}.sum().toString()
             else
                 getSecondStarOutcome(lines)
         }
-
     }
 
     open fun isProblemSolutionBySumOfLines():Boolean = false
