@@ -4,17 +4,18 @@ import Problem
 
 class AoC23Day01: Problem(1, 2023, "Trebuchet?!") {
 
-    override fun isProblemSolutionBySumOfLines() = true
-
     //=======================
     //     FIRST STAR
     //=======================
 
-    override fun getFirstStarLineOutcome(line: String, row: Int): Int {
-        val firstDigit = line.first {it.isDigit()} - '0'
-        val lastDigit = line.last() {it.isDigit()} - '0'
-        return 10*firstDigit+lastDigit
+    override fun getFirstStarOutcome(lines: List<String>): String {
+        return lines.sumOf { line ->
+            val firstDigit = line.first {it.isDigit()} - '0'
+            val lastDigit = line.last() {it.isDigit()} - '0'
+            10*firstDigit+lastDigit
+        }.toString()
     }
+
 
     //=======================
     //     SECOND STAR
@@ -29,10 +30,12 @@ class AoC23Day01: Problem(1, 2023, "Trebuchet?!") {
     private val numbersRegEx = numberMap.keys.joinToString("|", "(", ")" ).toRegex()
     private val numbersInvertedRegEx = numberMap.keys.map{ it.reversed()}.joinToString("|", "(", ")" ).toRegex()
 
-    override fun getSecondStarLineOutcome(line: String, row: Int): Int {
-        val firstDigit = numberMap[numbersRegEx.find(line)?.value?:'0']?:0
-        val lastDigit = numberMap[(numbersInvertedRegEx.find(line.reversed())?.value?:"0").reversed()]?:0
-        return 10*firstDigit+lastDigit
+    override fun getSecondStarOutcome(lines: List<String>): String {
+        return lines.sumOf { line ->
+            val firstDigit = numberMap[numbersRegEx.find(line)?.value?:'0']?:0
+            val lastDigit = numberMap[(numbersInvertedRegEx.find(line.reversed())?.value?:"0").reversed()]?:0
+            10*firstDigit+lastDigit
+        }.toString()
     }
 
 }

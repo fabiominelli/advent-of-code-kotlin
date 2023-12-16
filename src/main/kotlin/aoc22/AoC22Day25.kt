@@ -4,8 +4,6 @@ import Problem
 
 class AoC22Day25: Problem(25, 2022, "Full of Hot Air") {
 
-    override fun isProblemSolutionBySumOfLines() = false
-
     class Snafu(val value:String) {
 
         private val digitMap = mapOf('2' to 2, '1' to 1, '0' to 0, '-' to -1, '=' to -2)

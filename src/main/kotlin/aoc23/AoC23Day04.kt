@@ -4,10 +4,6 @@ import Problem
 
 class AoC23Day04: Problem(4, 2023, "Scratchcards") {
 
-    override fun isProblemSolutionBySumOfLines() = true
-
-
-
     //=======================
     //     FIRST STAR
     //=======================
@@ -24,25 +20,22 @@ class AoC23Day04: Problem(4, 2023, "Scratchcards") {
         fun winCount() = found.count { winning.contains(it) }
     }
 
-    override fun getFirstStarLineOutcome(line: String, row: Int): Int {
-       return Card(line).winCount().let {if (it==0) 0 else (1 shl (it-1))}
+    override fun getFirstStarOutcome(lines: List<String>): String {
+        return lines.sumOf { line -> Card(line).winCount().let {
+            if (it==0) 0 else (1 shl (it-1))
+        }}.toString()
     }
-
-
 
     //=======================
     //     SECOND STAR
     //=======================
 
-    private var cardCount: Array<Int> = arrayOf()
-
-    override fun secondStarPreprocessInput(lines:List<String>) {
-        cardCount = Array(lines.size) {1}
-    }
-
-    override fun getSecondStarLineOutcome(line: String, row: Int): Int {
-        (1..Card(line).winCount()).forEach { delta -> cardCount[row+delta] += cardCount[row] }
-        return cardCount[row]
+    override fun getSecondStarOutcome(lines: List<String>): String {
+        val cardCount: Array<Int> = Array(lines.size) {1}
+        return lines.mapIndexed { row, line ->
+            (1..Card(lines[row]).winCount()).forEach { delta -> cardCount[row+delta] += cardCount[row] }
+            cardCount[row]
+        }.sum().toString()
     }
 
 }

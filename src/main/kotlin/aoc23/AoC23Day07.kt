@@ -4,9 +4,6 @@ import Problem
 
 class AoC23Day07: Problem(7, 2023, "Camel Cards") {
 
-    override fun isProblemSolutionBySumOfLines() = false
-
-
     enum class Category(val signature:String) {
         HIGH_CARD("11111"),
         ONE_PAIR("2111"),

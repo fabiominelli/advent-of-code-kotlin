@@ -6,8 +6,6 @@ import kotlin.math.sqrt
 
 class AoC23Day06: Problem(6, 2023, "Wait For It") {
 
-    override fun isProblemSolutionBySumOfLines() = false
-
     class Race(private val time:Long, private val record:Long) {
         fun winningWaysCount(): Int {
             val root = (time - sqrt((time * time - 4 * record).toDouble())) / 2
