@@ -63,14 +63,14 @@ class AoC23Day08: Problem(8, 2023, "Haunted Wasteland") {
         // - for each starting node xxA, there is a minimum number N of repetitions of the instruction block that lead to
         //   a finishing node xxZ (without landing, at the end of any block iteration, on another yyZ finishing node)
         // - applying the instruction block one more time, from the xxZ node, the destination is the same
-        //   of when applying once the block from xxA
+        //   of applying once the block from xxA
         // - so, there is a cycle: from xxA, repeating the instruction block K*N times (with K any positive integer)
         //   will always lead to xxZ
         // - also, there is no other way to land to a finishing node from xxA
 
-        // The conclusion is that I have to find, for each staring node, the number of repetitions that lead
+        // The conclusion is that I have to find, for each starting node, the number of repetitions that lead
         // to its associated finishing node.
-        // The solution is the least common multiple of all this number (multiplied by the length of the instruction
+        // The solution is the least common multiple of all these numbers (multiplied by the length of the instruction
         // block)
 
         val instructionBlock = lines[0]

@@ -32,7 +32,7 @@ abstract class Problem(private val dayNumber:Int, private val year:Int, private 
 
     private fun solveForInput(isSample: Boolean, star: Int): String {
         val lines = if (isSample) {
-                        readFile("$year/day$dayNumber-sample.txt") ?: readFile("$year/day$dayNumber-sample-${star}.txt")
+                        readFile("$year/day$dayNumber-sample-${star}.txt") ?: readFile("$year/day$dayNumber-sample.txt")
                     } else {
                         readFile("$year/day$dayNumber-myInput.txt")
                     } ?: throw Exception("Input not found")
