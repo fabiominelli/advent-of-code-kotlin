@@ -20,6 +20,7 @@ fun main() {
         AoC23Day15(),
         AoC23Day16(),
         AoC23Day17(),
+        AoC23Day18(),
     ))
 
 }
