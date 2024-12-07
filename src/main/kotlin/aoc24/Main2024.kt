@@ -9,6 +9,9 @@ fun main() {
         AoC24Day02(),
         AoC24Day03(),
         AoC24Day04(),
+        AoC24Day05(),
+        AoC24Day06(),
+        AoC24Day07(),
     ))
 
 }
