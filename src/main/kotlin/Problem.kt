@@ -24,7 +24,25 @@ abstract class Problem(private val dayNumber:Int, private val year:Int, private 
             println ("========================================================================================================================")
             println()
         }
+
+        fun splitLines(lines: List<String>): List<List<String>> {
+            val result = mutableListOf<List<String>>()
+            var current = mutableListOf<String>()
+            for (line in lines) {
+                if (line.isEmpty()) {
+                    result.add(current)
+                    current = mutableListOf()
+                } else {
+                    current.add(line)
+                }
+            }
+            if (current.isNotEmpty()) {
+                result.add(current)
+            }
+            return result
+        }
     }
+
 
     private fun readFile(fileName:String):List<String>? =
         javaClass.classLoader?.getResource(fileName)?.let { File(it.toURI()).readLines() }
@@ -37,9 +55,13 @@ abstract class Problem(private val dayNumber:Int, private val year:Int, private 
                         readFile("$year/day$dayNumber-myInput.txt")
                     } ?: throw Exception("Input not found")
 
+        setIssSample(isSample)
         return if (star==1) getFirstStarOutcome(lines) else getSecondStarOutcome(lines)
     }
 
     abstract fun getFirstStarOutcome(lines:List<String>): String
     abstract fun getSecondStarOutcome(lines:List<String>): String
+
+    open fun setIssSample(b:Boolean) {}
+
 }

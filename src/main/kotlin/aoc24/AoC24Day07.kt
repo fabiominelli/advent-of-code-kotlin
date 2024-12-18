@@ -20,6 +20,7 @@ class AoC24Day07: Problem(7, 2024, "Bridge Repair") {
     data class Equation(val result:BigInteger, val operands:List<BigInteger>) {
         fun canBeTrue(useConcatenate:Boolean): Boolean {
             if (operands.size==1) return operands[0]==result
+            if (operands[0]>result) return false
             return Operator.entries.any { op ->
                 if (!useConcatenate && op==Operator.CONCATENATE) return false
                 Equation(result, listOf(op.apply(operands[0], operands[1])) + operands.drop(2)).canBeTrue(useConcatenate)
