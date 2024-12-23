@@ -69,10 +69,6 @@ class AoC24Day14: Problem(14, 2024, "Restroom Redoubt") {
         }
     }
 
-    var isSample = false
-    override fun setIssSample(b: Boolean) {
-        isSample = b
-    }
 
     //=======================
     //     FIRST STAR
