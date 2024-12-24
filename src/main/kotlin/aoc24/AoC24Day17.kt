@@ -56,7 +56,7 @@ class AoC24Day17: Problem(17, 2024, "Chronospatial Computer") {
             }
         }
 
-        fun executeInstruction(instruction: Instruction) {
+        private fun executeInstruction(instruction: Instruction) {
             val operandComboValue:Long = when(instruction.operand) {
                 in 0..3 -> instruction.operand.toLong()
                 4 -> regA

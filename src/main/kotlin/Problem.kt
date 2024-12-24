@@ -8,11 +8,11 @@ abstract class Problem(private val dayNumber:Int, private val year:Int, private 
     companion object {
         fun solve(problems:List<Problem>) {
             println()
-            println ("==================================================================================================================================")
-            println ("|     |                                  ||                  Part 1                    ||               Part 2                   |")
-            println ("|     |                                  ||--------------------------------------------||----------------------------------------|")
-            println ("| Day |              Title               ||       Sample        | My Input             ||  Sample         | My Input             |")
-            println ("|=====|==================================||=====================|======================||=================|======================|")
+            println ("===================================================================================================================================================")
+            println ("|     |                                  ||                  Part 1                    ||                          Part 2                         |")
+            println ("|     |                                  ||--------------------------------------------||---------------------------------------------------------|")
+            println ("| Day |              Title               ||       Sample        | My Input             ||  Sample         | My Input                              |")
+            println ("|=====|==================================||=====================|======================||=================|=======================================|")
 
             problems.forEach { p ->
                 print ("| %3s |".format(p.dayNumber))
@@ -20,10 +20,10 @@ abstract class Problem(private val dayNumber:Int, private val year:Int, private 
                 print (" %19s |".format(p.solveForInput(true, star = 1)))
                 print (" %20s ||".format(p.solveForInput(false, star = 1)))
                 print (" %15s |".format(p.solveForInput(true, star = 2)))
-                println (" %20s |".format(p.solveForInput(false, star = 2)))
+                println (" %38s |".format(p.solveForInput(false, star = 2)))
             }
 
-            println ("==================================================================================================================================")
+            println ("===================================================================================================================================================")
             println()
         }
 
